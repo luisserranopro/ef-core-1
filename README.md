@@ -6,6 +6,6 @@ Primer ejemplo de uso de EF Core. Tras descargarse, habrá que realizar las migr
 - dotnet ef migrations add Inicial 
 - dotnet ef database update
 
-Finalmente, se ejecutará con
+Finalmente, se ejecutará el programa con la orden:
 - dotnet run
 
