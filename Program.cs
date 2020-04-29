@@ -8,24 +8,22 @@ namespace MiPrimerPrograma
         static void Main(string[] args)
         {
             using (var db = new PrimerProgramaContext()) 
-			{ 
+            { 
+                Console.WriteLine("> Creación de una nueva localidad");
+                db.Add(new Localidad { NombreLocalidad = "Granada" }); 
+                db.SaveChanges(); 
 
-				Console.WriteLine("Inserción de datos");
-				db.Add(new Localidad { NombreLocalidad = "Granada" });
-				db.SaveChanges(); 
-
-				Console.WriteLine("Búsqueda de datos");
-				var localidad = db.Localidades.OrderBy(l => l.LocalidadId).First(); 
-				Console.WriteLine("	Nombre de localidad: " + localidad.NombreLocalidad);
-				localidad.NombreLocalidad = "Santander"; 
-				Console.WriteLine("	Nuevo nombre de localidad: "+ localidad.NombreLocalidad);
-				localidad.Personas.Add( new Persona { NombrePersona = "Carmen"}); 
-				db.SaveChanges(); 
-
-				Console.WriteLine("Borrado de datos");
-				db.Remove(localidad);
-				db.SaveChanges(); 
-			}
+                Console.WriteLine("> Búsqueda de localidad");
+                var localidad = db.Localidades.OrderBy(l => l.LocalidadId).First(); 
+                Console.WriteLine("> Modificación de localidad");
+                localidad.NombreLocalidad = "Santander"; 
+                localidad.Personas.Add( new Persona { NombrePersona = "Carmen"}); 
+                db.SaveChanges(); 
+                
+                Console.WriteLine("> Eliminación de localidad");
+                db.Remove(localidad); 
+                db.SaveChanges(); 
+            }
 
         }
     }
